@@ -1,0 +1,48 @@
+@echo off
+title Copy/Paste Character Debugger
+echo Starting Copy/Paste Character Debugger...
+echo.
+echo This will open the debugger tool in your default web browser.
+echo You can bookmark the page for easy access later.
+echo.
+pause
+
+REM Create the HTML file in the same directory as this batch file
+set "html_file=%~dp0copy-paste-debugger.html"
+
+REM Check if HTML file exists, if not create it
+if not exist "%html_file%" (
+    echo Creating HTML file...
+    goto :create_html
+)
+
+REM Open the HTML file in default browser
+start "" "%html_file%"
+echo Tool opened in your web browser.
+echo.
+echo You can close this window now.
+pause
+exit
+
+:create_html
+echo Creating the HTML debugger file...
+(
+echo ^<!DOCTYPE html^>
+echo ^<html lang="en"^>
+echo ^<head^>
+echo     ^<meta charset="UTF-8"^>
+echo     ^<meta name="viewport" content="width=device-width, initial-scale=1.0"^>
+echo     ^<title^>Copy/Paste Character Debugger^</title^>
+echo     ^<!-- Include the full HTML content here --^>
+echo ^</head^>
+echo ^<body^>
+echo     ^<h1^>Copy/Paste Character Debugger^</h1^>
+echo     ^<p^>Please replace this batch file with the full HTML content from the artifact.^</p^>
+echo ^</body^>
+echo ^</html^>
+) > "%html_file%"
+
+echo HTML file created. Please replace the content with the full HTML from the debugger tool.
+echo Then run this batch file again.
+pause
+exit
